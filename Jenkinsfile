@@ -9,18 +9,24 @@ pipeline {
 
     stages {
         stage("print1") {
+            agent {
+                label 'node1'
+            }
             steps {
                 echo "printing 1"
             }
         }
         stage("print2") {
+            agent {
+                label 'systemnode'
+            }
             steps {
                 echo "printing 2"
             }
         }
         stage('Build') {
             agent {
-                label 'linux'
+                label 'node1'
             }
             steps {
                 // Get some code from a GitHub repository
