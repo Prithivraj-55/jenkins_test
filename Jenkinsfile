@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 // Get some code from a GitHub repository
-                git credentialsId: 'github', url: 'git@github.com:sathishbob/jenkins_test.git'
+                url: git 'https://github.com/Prithivraj-55/jenkins_test'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway clean package"
@@ -39,7 +39,7 @@ pipeline {
                 success {
                     junit 'api-gateway/target/surefire-reports/*.xml'
                     archiveArtifacts 'api-gateway/target/*.jar'
-                    emailext body: "Please check the console output at $BUILD_URL for more information", to: "sathishbob@gmail.com", subject: '$PROJECT_NAME is completed - Build number is $BUILD_NUMBER - Build status is $BUILD_STATUS'
+                    emailext body: "Please check the console output at $BUILD_URL for more information", to: "prithivrajthangadurai@gmail.com", subject: '$PROJECT_NAME is completed - Build number is $BUILD_NUMBER - Build status is $BUILD_STATUS'
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline {
                     cest = TimeZone.getTimeZone("CEST")
                     def cest = new Date ()
                     println(cest)
-                    def mailRecipients = 'sathishbob@gmail.com'
+                    def mailRecipients = 'prithivrajthangadurai@gmail.com'
                     def jobName = currentBuild.fullDisplayName
                     env.Name = Name
                     env.cest = cest
